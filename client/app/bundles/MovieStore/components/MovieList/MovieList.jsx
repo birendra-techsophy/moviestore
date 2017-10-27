@@ -24,36 +24,35 @@ export default class MovieList extends Component {
   };
 
   render() {
+    const { movieList } = this.props;
     return (
       <Table onRowSelection={this.handleRowSelection}>
         <TableHeader>
           <TableRow>
             <TableHeaderColumn>ID</TableHeaderColumn>
             <TableHeaderColumn>Name</TableHeaderColumn>
-            <TableHeaderColumn>Status</TableHeaderColumn>
+            <TableHeaderColumn>Description</TableHeaderColumn>
+            <TableHeaderColumn>Cast</TableHeaderColumn>
+            <TableHeaderColumn>Duration</TableHeaderColumn>
+            <TableHeaderColumn>URL</TableHeaderColumn>
+            <TableHeaderColumn>IMDB Rating</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody>
-          <TableRow selected={this.isSelected(0)}>
-            <TableRowColumn>1</TableRowColumn>
-            <TableRowColumn>John Smith</TableRowColumn>
-            <TableRowColumn>Employed</TableRowColumn>
-          </TableRow>
-          <TableRow selected={this.isSelected(1)}>
-            <TableRowColumn>2</TableRowColumn>
-            <TableRowColumn>Randal White</TableRowColumn>
-            <TableRowColumn>Unemployed</TableRowColumn>
-          </TableRow>
-          <TableRow selected={this.isSelected(2)}>
-            <TableRowColumn>3</TableRowColumn>
-            <TableRowColumn>Stephanie Sanders</TableRowColumn>
-            <TableRowColumn>Employed</TableRowColumn>
-          </TableRow>
-          <TableRow selected={this.isSelected(3)}>
-            <TableRowColumn>4</TableRowColumn>
-            <TableRowColumn>Steve Brown</TableRowColumn>
-            <TableRowColumn>Employed</TableRowColumn>
-          </TableRow>
+          {movieList.map((movie) => {
+              return (
+                <TableRow key={movie.id}selected={this.isSelected(0)}>
+                  <TableRowColumn>{movie.id}</TableRowColumn>
+                  <TableRowColumn>{movie.name}</TableRowColumn>
+                  <TableRowColumn>{movie.description}</TableRowColumn>
+                  <TableRowColumn>{movie.cast}</TableRowColumn>
+                  <TableRowColumn>{movie.duration}</TableRowColumn>
+                  <TableRowColumn>{movie.url}</TableRowColumn>
+                  <TableRowColumn>{`${movie.imdbrating}/10`}</TableRowColumn>
+                </TableRow>
+              )
+            })
+          }
         </TableBody>
       </Table>
     );

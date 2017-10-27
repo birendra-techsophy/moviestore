@@ -15,7 +15,9 @@ class ShowMovie extends Component {
     loadingMovieStores();
     fetchMovieStores();
   }
-
+  componentWillReceiveProps(nextProps) {
+    // console.log('---props---', nextProps);
+  }
   render() {
     const movieList = this.props.movieStoreList.movieList;
     console.log('----movieList--', movieList, this.props.movieStoreList);

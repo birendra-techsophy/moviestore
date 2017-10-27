@@ -3,7 +3,7 @@
 //import { HELLO_WORLD_NAME_UPDATE } from '../constants/movieStoreConstants';
 
 import {
-  POST_MOVIE,
+  POST_MOVIE_LOADING,
   POST_MOVIE_SUCCESS,
   POST_MOVIE_FAILURE } from '../constants/movieStoreConstants';
 
@@ -12,7 +12,7 @@ import callApi from './../services/call.api';
 // Define the corresponding action creator, must return an object
 export function loadingCreateMovie() {
   return {
-    type: POST_MOVIE
+    type: POST_MOVIE_LOADING
   };
 }
 
