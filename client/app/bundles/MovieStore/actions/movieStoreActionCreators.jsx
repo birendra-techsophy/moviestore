@@ -30,7 +30,6 @@ export function createMovieStoreFailure(error) {
 }
 
 export function createMovieStore(movieDetails) {
-  console.log('----Action---1', movieDetails);
   return (dispatch) => {
     return callApi('movie_stores', 'post', movieDetails, (error) => {
   	  if (error) {

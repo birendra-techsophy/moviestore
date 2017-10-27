@@ -10,6 +10,7 @@ class MovieStoresController < ApplicationController
   def new
     @movie_stores_props = { name: "Golmal Again!" }
   end
+
   def create
     @movie_store = MovieStore.new(movie_store_params)
     respond_to do |format|
@@ -19,6 +20,19 @@ class MovieStoresController < ApplicationController
         else
           render :json => { :errors => @movie_store.errors.messages }, :status => 422
         end
+      end
+    end
+  end
+
+  def destroy
+    @movie_store = MovieStore.find_by_id(params[:id])
+    respond_to do |format|
+      if @movie_store.destroy
+        format.json { head :no_content, status: :ok }
+        format.xml { head :no_content, status: :ok }
+      else
+        format.json { render json: @movie_store.errors, status: :unprocessable_entity }
+        format.xml { render xml: @movie_store.errors, status: :unprocessable_entity }
       end
     end
   end

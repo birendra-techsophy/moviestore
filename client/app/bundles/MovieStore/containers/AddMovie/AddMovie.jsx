@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import { createMovieStore } from '../../actions/movieStoreActionCreators';
+import { createMovieStore, loadingCreateMovie } from '../../actions/movieStoreActionCreators';
 import Loader from '../../components/Loader/Loader';
 import Toaster from '../../components/Toaster/Toaster';
 
@@ -15,7 +15,7 @@ class AddMovie extends Component {
     super(props);
     this.state = {
       movieDetails: {},
-      isRedirect: false
+      isRedirectToHome: false
     };
   }
 
@@ -27,15 +27,22 @@ class AddMovie extends Component {
   }
 
   handleSubmit = (event) => {
-    const { createMovieStore, movieStore } = this.props;
+    const { createMovieStore, loadingCreateMovie } = this.props;
+    loadingCreateMovie();
     createMovieStore(this.state.movieDetails);
-    this.props.history.push('/');
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { error, loading } = nextProps.movieStore;
+    if (!error && !loading) {
+      this.setState({ isRedirectToHome: true });
+    }
   }
 
   render() {
-    const { error, loading } = this.props.movieStore;
-    const { isRedirect } = this.state;
-    if (isRedirect && !error) {
+    const movieStore = this.props.movieStore;
+    const { movieDetails, isRedirectToHome } = this.state;
+    if (isRedirectToHome) {
        return <Redirect to='/'/>;
     } else {
       return (
@@ -102,4 +109,4 @@ AddMovie.propTypes = {
   movieStore: PropTypes.object
 };
 
-export default connect(mapStateToProps, ({ createMovieStore }))(AddMovie);
+export default connect(mapStateToProps, ({ createMovieStore, loadingCreateMovie }))(AddMovie);
