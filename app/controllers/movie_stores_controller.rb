@@ -1,9 +1,15 @@
 class MovieStoresController < ApplicationController
   def index
-    @movie_stores = MovieStore.all
+    puts " #{params} ...........********************"
+     movie_stores = MovieStore.all.page(1).per(3)
      respond_to do |format|
-          format.html # index.html.erb
-          format.json { render :json => @movie_stores.map(&:attributes) }
+      format.html # index.html.erb
+      format.json {
+        render json: {
+          movies: movie_stores,
+          totalRecord: MovieStore.all.count
+        }
+      }
      end
   end
 

@@ -6,7 +6,7 @@ import {
   DELETE_MOVIE_LOADING,
   DELETE_MOVIE_SUCCESS,
   DELETE_MOVIE_FAILURE } from '../constants/movieStoreConstants';
-
+import {fetchMovieStores} from './fetchMovieStoreActionCreators';
 import callApi from './../services/call.api';
 
 // Define the corresponding action creator, must return an object
@@ -36,6 +36,7 @@ export function deleteMovieStores(movieStoreId) {
         dispatch(deleteMovieStoreFailure(error));
   	  } else {
         dispatch(deleteMovieStoreSuccess());
+        dispatch(fetchMovieStores());
   	  }
   	});
   };

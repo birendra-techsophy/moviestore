@@ -30,9 +30,14 @@ export function fetchMovieStoreFailure(error) {
   };
 }
 
-export function fetchMovieStores() {
+export function fetchMovieStores(page, limit) {
+  console.log('----fetchMovieStores--', page, ' / ', limit);
+  limit = limit * page - 1;
+  page = limit * page - limit;
   return (dispatch) => {
-    return callApi('movie_stores', 'get', {}, (error, movieDetails) => {
+    console.log('---1----');
+    return callApi('movie_stores', 'get', {page: page, limit: limit}, (error, movieDetails) => {
+      console.log('-----2---');
       if (error) {
         dispatch(fetchMovieStoreFailure(error));
   	  } else {
