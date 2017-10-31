@@ -22,3 +22,14 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+[ rails >= 5.1, ruby >= 2.4.1, node >= 6.11.2, npm >=3.10.10]
+
+$ git clone https://github.com/birendra-techsophy/moviestore.git
+$ cd moviestore
+$ bundle
+$ cd client
+$ npm install
+$ cd ..
+$ foreman start -f Procfile.dev
+
