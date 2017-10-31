@@ -1,7 +1,6 @@
 class MovieStoresController < ApplicationController
   def index
-    puts " #{params} ...........********************"
-     movie_stores = MovieStore.all.page(1).per(3)
+     movie_stores = MovieStore.all.page(params[:page]).per(params[:limit])
      respond_to do |format|
       format.html # index.html.erb
       format.json {

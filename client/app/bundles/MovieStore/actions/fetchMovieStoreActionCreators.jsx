@@ -32,8 +32,8 @@ export function fetchMovieStoreFailure(error) {
 
 export function fetchMovieStores(page, limit) {
   console.log('----fetchMovieStores--', page, ' / ', limit);
-  limit = limit * page - 1;
-  page = limit * page - limit;
+  // limit = limit * page - 1;
+  // page = limit * page - limit;
   return (dispatch) => {
     console.log('---1----');
     return callApi('movie_stores', 'get', {params: {page: page, limit: limit}}, (error, movieDetails) => {
