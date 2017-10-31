@@ -16,8 +16,8 @@ class ShowMovie extends Component {
     this.state = {
       total: 0,
       page: 1,
-      numberOfRows: 3,
-      rowsPerPage: [3, 6, 10],
+      numberOfRows: 10,
+      rowsPerPage: [10, 20, 30, 50, 100],
     };
   }
 
@@ -31,7 +31,7 @@ class ShowMovie extends Component {
   deleteMovie = (rowNumber, colNumber) => {
     const { loading, deleteMovieStores } = this.props;
     const movieList = this.props.movieStoreList.movieList;
-    if (colNumber === 7) {
+    if (colNumber === 8) {
       loading();
       deleteMovieStores(movieList[rowNumber].id);
     }

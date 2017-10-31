@@ -8,13 +8,18 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
-import { red700 } from 'material-ui/styles/colors';
+import ActionCreate from 'material-ui/svg-icons/content/create';
+import { red700, blue500 } from 'material-ui/styles/colors';
 
 import './MovieList.scss';
 
 const MovieList = ({movieList, deleteMovie}) => {
   return (
-    <Table onCellClick={(rowNumber, colNumber) => deleteMovie(rowNumber, colNumber)}>
+    <Table
+      fixedHeader={true}
+      fixedFooter={true}
+      height={'300px'}
+      onCellClick={(rowNumber, colNumber) => deleteMovie(rowNumber, colNumber)}>
       <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
         <TableRow>
           <TableHeaderColumn>ID</TableHeaderColumn>
@@ -24,6 +29,7 @@ const MovieList = ({movieList, deleteMovie}) => {
           <TableHeaderColumn>Duration</TableHeaderColumn>
           <TableHeaderColumn>URL</TableHeaderColumn>
           <TableHeaderColumn>IMDB Rating</TableHeaderColumn>
+          <TableHeaderColumn />
           <TableHeaderColumn />
         </TableRow>
       </TableHeader>
@@ -38,6 +44,7 @@ const MovieList = ({movieList, deleteMovie}) => {
                 <TableRowColumn>{movie.duration}</TableRowColumn>
                 <TableRowColumn>{movie.url}</TableRowColumn>
                 <TableRowColumn>{`${movie.imdbrating}/10`}</TableRowColumn>
+                <TableRowColumn>{<ActionCreate color={blue500} />}</TableRowColumn>
                 <TableRowColumn>{<ActionDelete color={red700} />}</TableRowColumn>
               </TableRow>
             )
