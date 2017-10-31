@@ -50,10 +50,11 @@ class Pagination extends React.Component {
   }
 
   selectRowsPerPage = () => {
+    const { page, total, rowsPerPage} = this.props.gridPageConfig;
     const updatedState =  Object.assign({}, this.props.gridPageConfig);
     updatedState.numberOfRows = parseInt(event.target.innerText);
-    if( updatedState.numberOfRows * this.props.page > this.props.total ) {
-      let updatedPage = Math.ceil(this.props.total / updatedState.numberOfRows);
+    if( updatedState.numberOfRows * page > total ) {
+      let updatedPage = Math.ceil(total / updatedState.numberOfRows);
       updatedState.page = updatedPage;
       this.props.updateRows(updatedState);
     } else {
