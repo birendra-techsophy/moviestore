@@ -29,7 +29,7 @@ class ShowMovie extends Component {
   }
 
   deleteMovie = (rowNumber, colNumber) => {
-    const { fetchMovieStores, loading, deleteMovieStores } = this.props;
+    const { loading, deleteMovieStores } = this.props;
     const movieList = this.props.movieStoreList.movieList;
     if (colNumber === 7) {
       loading();
@@ -38,6 +38,7 @@ class ShowMovie extends Component {
   }
 
   updateRows = (updatedState) => {
+    const { loadingMovieStores, fetchMovieStores } = this.props;
     this.setState({
       page: updatedState.page,
       numberOfRows: updatedState.numberOfRows

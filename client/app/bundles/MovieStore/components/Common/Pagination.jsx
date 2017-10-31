@@ -57,7 +57,6 @@ class Pagination extends React.Component {
       updatedState.page = updatedPage;
       this.props.updateRows(updatedState);
     } else {
-      console.log('----updatedState--', updatedState);
       this.props.updateRows(updatedState);
     }
   }
@@ -114,7 +113,6 @@ class Pagination extends React.Component {
 
   render() {
     const { page, total, numberOfRows, rowsPerPage} = this.props.gridPageConfig;
-    console.log('---gridPageConfig--', this.props.gridPageConfig);
     return (
       <div style={styles.paginationContainer}>
         <div style={styles.paginationSection}>
